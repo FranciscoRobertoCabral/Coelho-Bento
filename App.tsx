@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   CheckCircle, 
   Download, 
@@ -11,7 +11,9 @@ import {
   Zap, 
   AlertCircle,
   Check,
-  CreditCard
+  CreditCard,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 // --- Helper Components ---
@@ -39,54 +41,118 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ chi
 
 // --- Sections ---
 
-const Hero = () => (
-  <section className="relative bg-[#1a2e2a] text-white pt-16 pb-24 px-6 overflow-hidden">
-    <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none overflow-hidden">
-        <div className="absolute -top-10 -left-10 w-64 h-64 bg-green-400 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-10 w-80 h-80 bg-blue-400 rounded-full blur-3xl"></div>
-    </div>
-    
-    <div className="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
-      <div className="inline-block bg-[#2ecc71] text-[#1a2e2a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-        Lançamento
+const Hero = () => {
+  const images = [
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/f5d3660c-9193-40ec-837b-1fc0049e7d5e.jpg",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/ChatGPT-Image-23-de-dez.-de-2025-22_21_35.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/23afe8b9879c6eab4efbba59f35d5226-1.jpg"
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  }, [images.length]);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  return (
+    <section className="relative bg-[#1a2e2a] text-white pt-16 pb-24 px-6 overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none overflow-hidden">
+          <div className="absolute -top-10 -left-10 w-64 h-64 bg-green-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 -right-10 w-80 h-80 bg-blue-400 rounded-full blur-3xl"></div>
       </div>
       
-      <h1 className="text-4xl md:text-7xl font-black leading-[1.1] mb-6 uppercase tracking-tighter">
-        Kit Sala de Aula
-        <br />
-        <span className="text-[#e67e22]">Tema Coelho Bento</span>
-      </h1>
-      
-      <p className="text-lg md:text-2xl font-medium text-gray-300 max-w-3xl mb-10 leading-relaxed">
-        Materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na Educação Infantil.
-      </p>
+      <div className="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
+        <div className="inline-block bg-[#2ecc71] text-[#1a2e2a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+          Lançamento
+        </div>
 
-      <div className="relative w-full max-w-4xl aspect-video rounded-3xl bg-white/10 p-4 border border-white/20 shadow-2xl backdrop-blur-sm group mb-12">
-        <div className="w-full h-full bg-[#fdf8f1] rounded-2xl flex items-center justify-center overflow-hidden">
-          <div className="relative w-full h-full flex items-center justify-center p-8">
-             <div className="bg-white/90 p-12 rounded-2xl shadow-xl border-2 border-dashed border-[#2ecc71] flex flex-col items-center w-full max-w-lg">
-                <Star className="text-yellow-400 w-12 h-12 mb-4" />
-                <span className="text-2xl md:text-4xl font-black text-[#2ecc71] text-center uppercase tracking-tighter">
-                  imagem dos entregaveis
-                </span>
-             </div>
+        {/* Pré-título com Professora em destaque */}
+        <p className="text-lg md:text-2xl text-gray-300 mb-2 lowercase tracking-tight">
+          <span className="font-bold uppercase mr-1">Professora,</span> 
+          <span className="font-medium">receba seus aluninhos este ano com o</span>
+        </p>
+        
+        <h1 className="text-4xl md:text-7xl leading-[1.1] mb-6 uppercase tracking-tighter">
+          <span className="font-black">Kit Sala de Aula</span>
+          <br />
+          <span className="text-[#e67e22] flex flex-wrap items-baseline justify-center gap-x-2 md:gap-x-4">
+            <span className="font-medium text-2xl md:text-4xl">Tema</span> 
+            <span className="font-black">Coelho Bento</span>
+          </span>
+        </h1>
+        
+        <p className="text-lg md:text-2xl font-medium text-gray-300 max-w-3xl mb-10 leading-relaxed">
+          Materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na Educação Infantil.
+        </p>
+
+        {/* Carrossel - Quadro Removido */}
+        <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group">
+          <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            {/* Imagens */}
+            <div 
+              className="flex w-full h-full transition-transform duration-700 ease-in-out" 
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {images.map((img, index) => (
+                <img 
+                  key={index}
+                  src={img} 
+                  alt={`Slide ${index + 1}`} 
+                  className="w-full h-full object-contain flex-shrink-0"
+                />
+              ))}
+            </div>
+
+            {/* Setas de Navegação */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Indicadores (Dots) */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              {images.map((_, index) => (
+                <button 
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-[#2ecc71] w-6' : 'bg-white/40'}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
-        Comprar agora
-      </Button>
-      
-      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-gray-400 font-semibold text-sm">
-        <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> PDF de Alta Qualidade</div>
-        <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Envio Imediato</div>
-        <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 18 Arquivos Prontos</div>
-        <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Compra Segura</div>
+        <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
+          Comprar agora
+        </Button>
+        
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-gray-400 font-semibold text-sm">
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> PDF de Alta Qualidade</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Envio Imediato</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 18 Arquivos Prontos</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Compra Segura</div>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Description = () => (
   <section className="bg-white py-20 px-6">
@@ -107,9 +173,9 @@ const Description = () => (
         </div>
         <div className="flex-1 w-full">
             <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                <div className="w-full aspect-square bg-[#fdf8f1] border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8">
-                   <p className="text-xl md:text-2xl font-black text-[#2ecc71] text-center uppercase tracking-tight">
-                     imagem do entregavel
+                <div className="w-full aspect-square bg-[#fdf8f1] border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8 text-center">
+                   <p className="text-xl md:text-2xl font-black text-[#2ecc71] uppercase tracking-tight">
+                     Atividades Organizadas e Lúdicas
                    </p>
                 </div>
             </div>
@@ -199,9 +265,9 @@ const Differential = () => (
     <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <div className="flex-1 order-2 md:order-1">
         <div className="bg-blue-50 p-4 rounded-3xl">
-            <div className="rounded-2xl shadow-lg w-full aspect-square bg-white border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8">
-               <p className="text-xl md:text-2xl font-black text-[#2ecc71] text-center uppercase tracking-tight">
-                 foto de um coelho de oculos
+            <div className="rounded-2xl shadow-lg w-full aspect-square bg-white border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8 text-center">
+               <p className="text-xl md:text-2xl font-black text-[#2ecc71] uppercase tracking-tight">
+                 Conheça o Coelho Bento
                </p>
             </div>
         </div>
