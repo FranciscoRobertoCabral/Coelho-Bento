@@ -112,7 +112,8 @@ const Hero = () => {
                   key={index}
                   src={img} 
                   alt={`Slide ${index + 1}`} 
-                  className="w-full h-full object-contain flex-shrink-0"
+                  className="w-full h-full object-contain flex-shrink-0 pointer-events-none"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               ))}
             </div>
@@ -179,7 +180,8 @@ const Description = () => (
                 <img 
                   src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/Kit-Coelhinho-Bento.jpg" 
                   alt="kit sala de aula do coelhinho bento"
-                  className="w-full h-auto block"
+                  className="w-full h-auto block pointer-events-none"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
             </div>
         </div>
@@ -228,7 +230,8 @@ const Contents = () => {
                       <img 
                         src={item.image} 
                         alt="" 
-                        className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300" 
+                        className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300 pointer-events-none" 
+                        onContextMenu={(e) => e.preventDefault()}
                       />
                     )}
                     
@@ -236,7 +239,12 @@ const Contents = () => {
                     {!isPdf && (
                       <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
                         <div className="bg-white p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-[450px] max-w-[90vw] overflow-hidden">
-                           <img src={item.image} alt="ampliado" className="w-full h-auto rounded-xl" />
+                           <img 
+                            src={item.image} 
+                            alt="ampliado" 
+                            className="w-full h-auto rounded-xl pointer-events-none" 
+                            onContextMenu={(e) => e.preventDefault()}
+                          />
                         </div>
                       </div>
                     )}
@@ -289,7 +297,8 @@ const Differential = () => (
             <img 
               src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-09_26_03.png" 
               alt="diferencial coelho BENTO"
-              className="w-full h-auto block"
+              className="w-full h-auto block pointer-events-none"
+              onContextMenu={(e) => e.preventDefault()}
             />
         </div>
       </div>
@@ -322,157 +331,4 @@ const Differential = () => (
 const FormatInfo = () => (
   <section className="bg-[#f0f4f9] py-20 px-6">
     <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="flex flex-col gap-6 border-none">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
-            <Download className="text-[#3498db]" /> formato:
-          </h3>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> arquivos digitais (pdf)
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> envio imediato após a compra
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> pode ser impresso quantas vezes desejar
-            </li>
-          </ul>
-        </Card>
-
-        <Card className="flex flex-col gap-6 border-none bg-white">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
-            <AlertCircle className="text-orange-500" /> informações importantes:
-          </h3>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> produto digital
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> não acompanha material físico
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> uso pedagógico
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 italic lowercase">
-              <CheckCircle size={18} className="text-red-500" /> proibida a revenda ou compartilhamento
-            </li>
-          </ul>
-        </Card>
-      </div>
-    </div>
-  </section>
-);
-
-const Pricing = () => (
-  <section id="oferta" className="bg-[#1a2e2a] py-24 px-6 relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-64 h-64 bg-green-400/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-    <div className="max-w-4xl mx-auto text-center relative z-10">
-      <h2 className="text-white text-2xl md:text-3xl font-bold mb-4 tracking-wider lowercase">
-        acesso imediato ao kit completo
-      </h2>
-      <p className="text-gray-400 text-lg mb-8 font-medium lowercase">
-        garanta seu material hoje com valor promocional por tempo limitado.
-      </p>
-      
-      <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 backdrop-blur-md inline-block w-full max-w-2xl shadow-2xl text-center">
-        <div className="mb-2">
-          <span className="text-red-400 line-through text-xl mr-3 font-semibold lowercase">de r$ 49,90</span>
-        </div>
-        
-        <div className="flex flex-col items-center justify-center mb-6">
-          <span className="text-gray-300 text-lg font-bold lowercase mb-1">por apenas</span>
-          <div className="flex items-baseline gap-2">
-            <span className="text-white text-3xl md:text-5xl font-extrabold lowercase tracking-tighter">r$</span>
-            <span className="text-[#2ecc71] text-7xl md:text-9xl font-black tracking-tighter">10,00</span>
-          </div>
-          <span className="text-gray-400 text-sm mt-4 flex items-center gap-2 lowercase">
-            <CreditCard size={16} /> pagamento único • sem mensalidades
-          </span>
-        </div>
-
-        {/* Bonus Highlight repositioned above the button */}
-        <div className="mb-8 bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-4 inline-flex items-center gap-3">
-          <Gift className="text-yellow-400" size={24} />
-          <span className="text-yellow-100 font-bold text-base md:text-lg lowercase">
-            bônus: crachá de mesa (editável no canva)
-          </span>
-        </div>
-        
-        <Button className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)] lowercase">
-          quero meu kit agora
-        </Button>
-      </div>
-      
-      <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/40 text-xs font-bold uppercase tracking-widest lowercase">
-        <span className="flex items-center gap-2"><ShieldCheck size={16} className="text-[#2ecc71]" /> site 100% seguro</span>
-        <span className="flex items-center gap-2"><Zap size={16} className="text-[#2ecc71]" /> liberação imediata</span>
-        <span className="flex items-center gap-2"><Star size={16} className="text-[#2ecc71]" /> satisfação garantida</span>
-      </div>
-    </div>
-  </section>
-);
-
-const Guarantee = () => (
-  <section id="garantia" className="bg-white py-20 px-6">
-    <div className="max-w-3xl mx-auto text-center">
-      <div className="inline-block p-4 bg-green-50 rounded-full mb-6">
-        <ShieldCheck size={64} className="text-[#2ecc71]" />
-      </div>
-      <SectionTitle><span className="lowercase">✅ garantia de 7 dias</span></SectionTitle>
-      <p className="text-xl text-gray-600 leading-relaxed mb-10 lowercase">
-        você pode solicitar reembolso dentro do prazo caso o material não atenda às suas expectativas. sua satisfação é nossa prioridade.
-      </p>
-      
-      <div className="flex flex-col items-center gap-8">
-        <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
-          <span className="lowercase">comprar agora</span>
-        </Button>
-      </div>
-    </div>
-  </section>
-);
-
-const Footer = () => (
-  <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 border-t border-white/5 text-center text-sm font-medium lowercase">
-    <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
-      <p>&copy; kit sala de aula do coelhinho BENTO. todos os direitos reservados.</p>
-      <p className="max-w-2xl">
-        este produto é exclusivamente digital. o acesso será enviado ao e-mail cadastrado no momento da compra imediatamente após a confirmação do pagamento.
-      </p>
-    </div>
-  </footer>
-);
-
-// --- Main App Component ---
-
-const App: React.FC = () => {
-  return (
-    <div className="min-h-screen font-['Montserrat'] bg-gray-50">
-      {/* Navigation - Minimal fixed CTA for mobile */}
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
-        <button 
-          onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}
-          className="w-full py-4 bg-[#2ecc71] text-white font-black rounded-xl text-lg shadow-lg lowercase"
-        >
-          comprar agora
-        </button>
-      </div>
-
-      <main>
-        <Hero />
-        <Description />
-        <Contents />
-        <TargetAudience />
-        <Differential />
-        <FormatInfo />
-        <Pricing />
-        <Guarantee />
-      </main>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default App;
+      <div className="grid grid-cols-1 md:grid-
