@@ -39,11 +39,42 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ chi
   </div>
 );
 
+/**
+ * Image Wrapper component that puts an invisible div on top of images
+ * to prevent right-clicks, long presses on mobile, and dragging.
+ */
+const ProtectedImage: React.FC<{ 
+  src: string; 
+  alt: string; 
+  className?: string; 
+  width?: string; 
+  height?: string;
+  loading?: "lazy" | "eager";
+  fetchPriority?: "high" | "low" | "auto";
+}> = ({ src, alt, className = "", width, height, loading = "lazy", fetchPriority = "auto" }) => (
+  <div className={`relative inline-block overflow-hidden ${className}`} style={{ width: width ? 'auto' : undefined }}>
+    <img 
+      src={src} 
+      alt={alt} 
+      width={width}
+      height={height}
+      loading={loading}
+      // @ts-ignore
+      fetchpriority={fetchPriority}
+      decoding="async"
+      className="block w-full h-auto pointer-events-none select-none bg-gray-100"
+      onContextMenu={(e) => e.preventDefault()}
+    />
+    {/* Invisible protection layer */}
+    <div className="absolute inset-0 z-10 bg-transparent cursor-default" onContextMenu={(e) => e.preventDefault()}></div>
+  </div>
+);
+
 // --- Sections ---
 
 const Hero = () => {
   const images = [
-    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-16-de-jan.-de-2026-12_09_28.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-12_12_06.png",
     "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_39.png",
     "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_55.png",
     "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_46.png",
@@ -101,31 +132,35 @@ const Hero = () => {
           materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na educação infantil.
         </p>
 
-        <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group">
+        <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group bg-white/5 rounded-2xl">
           <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
             <div 
               className="flex w-full h-full transition-transform duration-700 ease-in-out" 
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {images.map((img, index) => (
-                <img 
-                  key={index}
-                  src={img} 
-                  alt={`Slide ${index + 1}`} 
-                  className="w-full h-full object-contain flex-shrink-0 pointer-events-none"
-                  onContextMenu={(e) => e.preventDefault()}
-                />
+                <div key={index} className="w-full h-full flex-shrink-0 relative">
+                  <ProtectedImage 
+                    src={img} 
+                    alt={`Material do Kit ${index + 1}`} 
+                    className="w-full h-full object-contain"
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
               ))}
             </div>
 
             <button 
               onClick={prevSlide}
+              aria-label="Slide anterior"
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
             >
               <ChevronLeft size={24} />
             </button>
             <button 
               onClick={nextSlide}
+              aria-label="Próximo slide"
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
             >
               <ChevronRight size={24} />
@@ -135,6 +170,7 @@ const Hero = () => {
               {images.map((_, index) => (
                 <button 
                   key={index}
+                  aria-label={`Ir para slide ${index + 1}`}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-white w-6' : 'bg-white/40'}`}
                 />
@@ -176,12 +212,13 @@ const Description = () => (
           </div>
         </div>
         <div className="flex-1 w-full">
-            <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500 bg-[#fdf8f1]">
-                <img 
+            <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500 bg-[#fdf8f1] aspect-square flex items-center justify-center">
+                <ProtectedImage 
                   src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/Kit-Coelhinho-Bento.jpg" 
-                  alt="kit sala de aula do coelhinho bento"
-                  className="w-full h-auto block pointer-events-none"
-                  onContextMenu={(e) => e.preventDefault()}
+                  alt="Amostra do kit sala de aula do coelhinho bento"
+                  width="500"
+                  height="500"
+                  className="w-full"
                 />
             </div>
         </div>
@@ -221,17 +258,18 @@ const Contents = () => {
             return (
               <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md group">
                 {item.image && (
-                  <div className="relative group/img flex-shrink-0">
+                  <div className="relative group/img flex-shrink-0 bg-gray-50 rounded">
                     {isPdf ? (
                       <div className="w-12 h-12 rounded bg-red-50 flex items-center justify-center text-red-500 border border-red-100 group-hover:bg-red-100 transition-colors">
                         <FileText size={22} />
                       </div>
                     ) : (
-                      <img 
+                      <ProtectedImage 
                         src={item.image} 
-                        alt="" 
-                        className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300 pointer-events-none" 
-                        onContextMenu={(e) => e.preventDefault()}
+                        alt={item.text} 
+                        width="48"
+                        height="48"
+                        className="w-12 h-12 rounded shadow-sm" 
                       />
                     )}
                     
@@ -239,12 +277,13 @@ const Contents = () => {
                     {!isPdf && (
                       <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
                         <div className="bg-white p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-[450px] max-w-[90vw] overflow-hidden">
-                           <img 
+                           <ProtectedImage 
                             src={item.image} 
-                            alt="ampliado" 
-                            className="w-full h-auto rounded-xl pointer-events-none" 
-                            onContextMenu={(e) => e.preventDefault()}
-                          />
+                            alt="Visualização ampliada" 
+                            width="450"
+                            height="450"
+                            className="w-full h-auto rounded-xl" 
+                           />
                         </div>
                       </div>
                     )}
@@ -293,12 +332,13 @@ const Differential = () => (
   <section className="bg-white py-20 px-6">
     <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <div className="flex-1 order-2 md:order-1">
-        <div className="bg-blue-50 p-4 rounded-3xl overflow-hidden shadow-2xl">
-            <img 
+        <div className="bg-blue-50 p-4 rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gray-100 flex items-center justify-center">
+            <ProtectedImage 
               src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-09_26_03.png" 
-              alt="diferencial coelho BENTO"
-              className="w-full h-auto block pointer-events-none"
-              onContextMenu={(e) => e.preventDefault()}
+              alt="Ilustração do diferencial coelho BENTO"
+              width="600"
+              height="338"
+              className="w-full"
             />
         </div>
       </div>
@@ -331,4 +371,220 @@ const Differential = () => (
 const FormatInfo = () => (
   <section className="bg-[#f0f4f9] py-20 px-6">
     <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card className="flex flex-col gap-6 border-none">
+          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
+            <Download className="text-[#3498db]" /> formato:
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> arquivos digitais (pdf)
+            </li>
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> envio imediato após a compra
+            </li>
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> pode ser impresso quantas vezes desejar
+            </li>
+          </ul>
+        </Card>
+
+        <Card className="flex flex-col gap-6 border-none bg-white">
+          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
+            <AlertCircle className="text-orange-500" /> informações importantes:
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> produto digital
+            </li>
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> não acompanha material físico
+            </li>
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> uso pedagógico
+            </li>
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 italic lowercase">
+              <CheckCircle size={18} className="text-red-500" /> proibida a revenda ou compartilhamento
+            </li>
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </section>
+);
+
+const Pricing = () => (
+  <section id="oferta" className="bg-[#1a2e2a] py-24 px-6 relative overflow-hidden">
+    <div className="absolute top-0 right-0 w-64 h-64 bg-green-400/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+    <div className="max-w-4xl mx-auto text-center relative z-10">
+      <h2 className="text-white text-2xl md:text-3xl font-bold mb-4 tracking-wider lowercase">
+        acesso imediato ao kit completo
+      </h2>
+      <p className="text-gray-400 text-lg mb-8 font-medium lowercase">
+        garanta seu material hoje com valor promocional por tempo limitado.
+      </p>
+      
+      <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 backdrop-blur-md inline-block w-full max-w-2xl shadow-2xl text-center">
+        <div className="mb-2">
+          <span className="text-red-400 line-through text-xl mr-3 font-semibold lowercase">de r$ 49,90</span>
+        </div>
+        
+        <div className="flex flex-col items-center justify-center mb-6">
+          <span className="text-gray-300 text-lg font-bold lowercase mb-1">por apenas</span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-white text-3xl md:text-5xl font-extrabold lowercase tracking-tighter">r$</span>
+            <span className="text-[#2ecc71] text-7xl md:text-9xl font-black tracking-tighter">10,00</span>
+          </div>
+          <span className="text-gray-400 text-sm mt-4 flex items-center gap-2 lowercase">
+            <CreditCard size={16} /> pagamento único • sem mensalidades
+          </span>
+        </div>
+
+        {/* Bonus Highlight repositioned above the button */}
+        <div className="mb-8 bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-4 inline-flex items-center gap-3">
+          <Gift className="text-yellow-400" size={24} />
+          <span className="text-yellow-100 font-bold text-base md:text-lg lowercase">
+            bônus: crachá de mesa (editável no canva)
+          </span>
+        </div>
+        
+        <Button className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)] lowercase">
+          quero meu kit agora
+        </Button>
+      </div>
+      
+      <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/40 text-xs font-bold uppercase tracking-widest lowercase">
+        <span className="flex items-center gap-2"><ShieldCheck size={16} className="text-[#2ecc71]" /> site 100% seguro</span>
+        <span className="flex items-center gap-2"><Zap size={16} className="text-[#2ecc71]" /> liberação imediata</span>
+        <span className="flex items-center gap-2"><Star size={16} className="text-[#2ecc71]" /> satisfação garantida</span>
+      </div>
+    </div>
+  </section>
+);
+
+const Guarantee = () => (
+  <section id="garantia" className="bg-white py-20 px-6">
+    <div className="max-w-3xl mx-auto text-center">
+      <div className="inline-block p-4 bg-green-50 rounded-full mb-6">
+        <ShieldCheck size={64} className="text-[#2ecc71]" />
+      </div>
+      <SectionTitle><span className="lowercase">✅ garantia de 7 dias</span></SectionTitle>
+      <p className="text-xl text-gray-600 leading-relaxed mb-10 lowercase">
+        você pode solicitar reembolso dentro do prazo caso o material não atenda às suas expectativas. sua satisfação é nossa prioridade.
+      </p>
+      
+      <div className="flex flex-col items-center gap-8">
+        <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
+          <span className="lowercase">comprar agora</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+);
+
+const Footer = () => (
+  <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 border-t border-white/5 text-center text-sm font-medium lowercase">
+    <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
+      <p>&copy; kit sala de aula do coelhinho BENTO. todos os direitos reservados.</p>
+      <p className="max-w-2xl">
+        este produto é exclusivamente digital. o acesso será enviado ao e-mail cadastrado no momento da compra imediatamente após a confirmação do pagamento.
+      </p>
+    </div>
+  </footer>
+);
+
+// --- Main App Component ---
+
+const App: React.FC = () => {
+  useEffect(() => {
+    // Disable right click globally
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Disable common copy/inspect shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'j' || e.key === 'p')) ||
+        (e.metaKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'j' || e.key === 'p')) ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    // Disable image dragging globally
+    const handleDragStart = (e: DragEvent) => {
+      if ((e.target as HTMLElement).tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    window.addEventListener('contextmenu', handleContextMenu);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      window.removeEventListener('contextmenu', handleContextMenu);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen font-['Montserrat'] bg-gray-50 select-none">
+      {/* Global Style for protection and performance placeholders */}
+      <style>{`
+        body {
+          -webkit-touch-callout: none; /* Disable long press context menu on iOS */
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        img {
+          -webkit-user-drag: none;
+          -khtml-user-drag: none;
+          -moz-user-drag: none;
+          -o-user-drag: none;
+          user-drag: none;
+          pointer-events: none; /* Important: makes the image non-interactable */
+          background-color: #f3f4f6; /* Placeholder color */
+        }
+        /* Prevents layout shift for images in hero slider */
+        .hero-img-container {
+          aspect-ratio: 16/9;
+        }
+      `}</style>
+
+      {/* Navigation - Minimal fixed CTA for mobile */}
+      <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
+        <button 
+          onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}
+          className="w-full py-4 bg-[#2ecc71] text-white font-black rounded-xl text-lg shadow-lg lowercase"
+        >
+          comprar agora
+        </button>
+      </div>
+
+      <main>
+        <Hero />
+        <Description />
+        <Contents />
+        <TargetAudience />
+        <Differential />
+        <FormatInfo />
+        <Pricing />
+        <Guarantee />
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
