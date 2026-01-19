@@ -10,7 +10,6 @@ import {
   Printer, 
   Zap, 
   AlertCircle,
-  Check,
   CreditCard,
   ChevronLeft,
   ChevronRight
@@ -167,7 +166,7 @@ const Description = () => (
           </SectionTitle>
           <div className="space-y-6 text-lg text-gray-700 leading-relaxed font-normal lowercase">
             <p>
-              o <strong>kit sala de aula do coelhinho bento</strong> foi desenvolvido para professores que buscam materiais pedagógicos prontos, com um tema lúdico e atrativo para as crianças.
+              o <strong>kit sala de aula do coelhinho <span className="uppercase text-[#e67e22]">BENTO</span></strong> foi desenvolvido para professores que buscam materiais pedagógicos prontos, com um tema lúdico e atrativo para as crianças.
             </p>
             <p>
               com atividades ilustradas e organizadas, o kit ajuda a tornar o dia a dia em sala de aula mais <strong>prático, visual e envolvente</strong>.
@@ -190,24 +189,19 @@ const Description = () => (
 
 const Contents = () => {
   const items = [
-    { text: "🕒 painel “que horas são?”", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-16-de-jan.-de-2026-12_09_28.png" },
-    { text: "🧑‍🤝‍🧑 ajudantes do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_39.png" },
-    { text: "🔺 formas geométricas planas e espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_55.png" },
-    { text: "🔺 formas geométricas espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_46.png" },
-    { text: "🅰️ silabário simples (cursivo e bastão)", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
-    { text: "🆎 silabário complexo (cursivo e bastão)", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09-1.png" },
-    { text: "🔢 painel número do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_21.png" },
-    { text: "📝 painel palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png" },
-    { text: "📚 leiturômetro" },
-    { text: "👧👦 quantos somos" },
-    { text: "🪪 crachá de mesa (3 opções completas)" },
-    { text: "✖️ tabuada da multiplicação" },
+    { text: "🕒 vamos aprender as horas!!", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-12_12_06.png" },
+    { text: "🧑‍🤝‍🧑 ajudantes do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-11_03_54.png" },
+    { text: "🔺 formas geométricas espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_21.png" },
+    { text: "🔠 cards do alfabeto com letras bastão e cursiva para parede", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-15_05_34.png" },
+    { text: "🔺 formas geométricas planas", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_29.png" },
+    { text: "🔢 painel número do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_30.png" },
+    { text: "📝 painel palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
+    { text: "📅 calendário", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png" },
+    { text: "🎂 painel de aniversariantes", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_00_38.png" },
+    { text: "✖️ tabuada da multiplicação", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09-1.png" },
     { text: "🙌 painel “bem-vindos” interativo" },
-    { text: "🔠 alfabeto de parede" },
     { text: "📋 chamadinha (editável no canva pro)" },
-    { text: "👋 cumprimentos divertidos" },
-    { text: "🚪 placa de porta para sala" },
-    { text: "🎨 opções de decoração de porta" }
+    { text: "🚪 placa de porta para sala" }
   ];
 
   return (
@@ -220,26 +214,38 @@ const Contents = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-          {items.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md group">
-              {item.image && (
-                <div className="relative group/img flex-shrink-0">
-                  <img 
-                    src={item.image} 
-                    alt="" 
-                    className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300" 
-                  />
-                  {/* Hover Zoom Preview */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
-                    <div className="bg-white p-1 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-80 overflow-hidden">
-                       <img src={item.image} alt="ampliado" className="w-full h-auto rounded-xl" />
-                    </div>
+          {items.map((item, idx) => {
+            const isPdf = item.image?.toLowerCase().endsWith('.pdf');
+            return (
+              <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md group">
+                {item.image && (
+                  <div className="relative group/img flex-shrink-0">
+                    {isPdf ? (
+                      <div className="w-12 h-12 rounded bg-red-50 flex items-center justify-center text-red-500 border border-red-100 group-hover:bg-red-100 transition-colors">
+                        <FileText size={22} />
+                      </div>
+                    ) : (
+                      <img 
+                        src={item.image} 
+                        alt="" 
+                        className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300" 
+                      />
+                    )}
+                    
+                    {/* Hover Zoom Preview (Apenas para imagens) */}
+                    {!isPdf && (
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
+                        <div className="bg-white p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-[450px] max-w-[90vw] overflow-hidden">
+                           <img src={item.image} alt="ampliado" className="w-full h-auto rounded-xl" />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-              <span className="text-gray-700 font-bold text-sm md:text-base lowercase">{item.text}</span>
-            </div>
-          ))}
+                )}
+                <span className="text-gray-700 font-bold text-sm md:text-base lowercase">{item.text}</span>
+              </div>
+            );
+          })}
         </div>
         
         <div className="bg-[#1a2e2a] text-white py-5 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg md:text-2xl font-black shadow-2xl border-b-4 border-black/20 lowercase">
@@ -302,7 +308,7 @@ const Differential = () => (
         </SectionTitle>
         <div className="space-y-6 text-lg text-gray-700 leading-relaxed lowercase">
           <p>
-            o <strong>coelhinho bento</strong> é um personagem carismático e familiar para as crianças, ajudando a tornar as atividades mais atrativas e envolventes.
+            o <strong>coelhinho <span className="uppercase text-[#e67e22]">BENTO</span></strong> é um personagem carismático e familiar para as crianças, ajudando a tornar as atividades mais atrativas e envolventes.
           </p>
           <p>
             o uso de um personagem fixo facilita a identificação das crianças com o material, tornando o momento das atividades mais <strong>leve e organizado</strong>.
@@ -433,7 +439,7 @@ const Footer = () => (
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen font-['Montserrat']">
+    <div className="min-h-screen font-['Montserrat'] bg-gray-50">
       {/* Navigation - Minimal fixed CTA for mobile */}
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
         <button 
