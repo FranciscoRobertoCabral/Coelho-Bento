@@ -12,7 +12,8 @@ import {
   AlertCircle,
   CreditCard,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Gift
 } from 'lucide-react';
 
 // --- Helper Components ---
@@ -68,18 +69,18 @@ const Hero = () => {
   }, [nextSlide]);
 
   return (
-    <section className="relative bg-[#1a2e2a] text-white pt-16 pb-24 px-6 overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none overflow-hidden">
-          <div className="absolute -top-10 -left-10 w-64 h-64 bg-green-400 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 -right-10 w-80 h-80 bg-blue-400 rounded-full blur-3xl"></div>
+    <section className="relative bg-[#1e3a8a] text-white pt-16 pb-24 px-6 overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
+          <div className="absolute -top-10 -left-10 w-64 h-64 bg-blue-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 -right-10 w-80 h-80 bg-blue-600 rounded-full blur-3xl"></div>
       </div>
       
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
-        <div className="inline-block bg-[#2ecc71] text-[#1a2e2a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+        <div className="inline-block bg-white text-[#1e3a8a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
           lançamento
         </div>
 
-        <p className="text-lg md:text-2xl text-gray-300 mb-2 lowercase tracking-tight">
+        <p className="text-lg md:text-2xl text-blue-100 mb-2 lowercase tracking-tight">
           <span className="font-bold mr-1">professora,</span> 
           <span className="font-medium">receba seus aluninhos este ano com o</span>
         </p>
@@ -88,15 +89,15 @@ const Hero = () => {
           <span className="font-black lowercase">kit sala de aula</span>
           <br />
           <span className="text-[#e67e22] flex flex-wrap items-baseline justify-center gap-x-2 md:gap-x-4">
-            <span className="font-medium text-2xl md:text-4xl lowercase">do</span> 
+            <span className="font-medium text-2xl md:text-4xl lowercase text-white">do</span> 
             <span className="font-black flex gap-x-2">
               <span className="lowercase">coelhinho</span>
-              <span className="uppercase">BENTO</span>
+              <span className="uppercase text-yellow-300">BENTO</span>
             </span>
           </span>
         </h1>
         
-        <p className="text-lg md:text-2xl font-medium text-gray-300 max-w-3xl mb-10 leading-relaxed lowercase">
+        <p className="text-lg md:text-2xl font-medium text-blue-100 max-w-3xl mb-10 leading-relaxed lowercase">
           materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na educação infantil.
         </p>
 
@@ -134,7 +135,7 @@ const Hero = () => {
                 <button 
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-[#2ecc71] w-6' : 'bg-white/40'}`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-white w-6' : 'bg-white/40'}`}
                 />
               ))}
             </div>
@@ -145,10 +146,10 @@ const Hero = () => {
           comprar agora
         </Button>
         
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-gray-400 font-semibold text-sm lowercase">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-blue-100 font-semibold text-sm lowercase">
           <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> pdf de alta qualidade</div>
           <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> envio imediato</div>
-          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 18 arquivos prontos</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 12 arquivos prontos</div>
           <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> compra segura</div>
         </div>
       </div>
@@ -198,10 +199,9 @@ const Contents = () => {
     { text: "📝 painel palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
     { text: "📅 calendário", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png" },
     { text: "🎂 painel de aniversariantes", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_00_38.png" },
-    { text: "✖️ tabuada da multiplicação", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09-1.png" },
-    { text: "🙌 painel “bem-vindos” interativo" },
-    { text: "📋 chamadinha (editável no canva pro)" },
-    { text: "🚪 placa de porta para sala" }
+    { text: "👥 quantos somos", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09.png" },
+    { text: "✖️ tabuada da multiplicação", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-16_52_49.png" },
+    { text: "🔢 painel de parede dos numeros", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-17_09_40.png" }
   ];
 
   return (
@@ -251,7 +251,7 @@ const Contents = () => {
         <div className="bg-[#1a2e2a] text-white py-5 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg md:text-2xl font-black shadow-2xl border-b-4 border-black/20 lowercase">
           <span className="text-yellow-400 text-2xl">⚡</span> 
           <span className="text-2xl">📌</span> 
-          <span>total: 18 arquivos digitais</span>
+          <span>total: 12 arquivos digitais (+ bônus)</span>
         </div>
       </div>
     </section>
@@ -375,11 +375,12 @@ const Pricing = () => (
         garanta seu material hoje com valor promocional por tempo limitado.
       </p>
       
-      <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 backdrop-blur-md inline-block w-full max-w-2xl shadow-2xl">
+      <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 backdrop-blur-md inline-block w-full max-w-2xl shadow-2xl text-center">
         <div className="mb-2">
           <span className="text-red-400 line-through text-xl mr-3 font-semibold lowercase">de r$ 49,90</span>
         </div>
-        <div className="flex flex-col items-center justify-center mb-10">
+        
+        <div className="flex flex-col items-center justify-center mb-6">
           <span className="text-gray-300 text-lg font-bold lowercase mb-1">por apenas</span>
           <div className="flex items-baseline gap-2">
             <span className="text-white text-3xl md:text-5xl font-extrabold lowercase tracking-tighter">r$</span>
@@ -387,6 +388,14 @@ const Pricing = () => (
           </div>
           <span className="text-gray-400 text-sm mt-4 flex items-center gap-2 lowercase">
             <CreditCard size={16} /> pagamento único • sem mensalidades
+          </span>
+        </div>
+
+        {/* Bonus Highlight repositioned above the button */}
+        <div className="mb-8 bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-4 inline-flex items-center gap-3">
+          <Gift className="text-yellow-400" size={24} />
+          <span className="text-yellow-100 font-bold text-base md:text-lg lowercase">
+            bônus: crachá de mesa (editável no canva)
           </span>
         </div>
         
