@@ -212,7 +212,7 @@ const Description = () => (
           </div>
         </div>
         <div className="flex-1 w-full">
-            <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500 bg-[#fdf8f1] aspect-square flex items-center justify-center">
+            <div className="rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 bg-[#fdf8f1] aspect-square flex items-center justify-center">
                 <ProtectedImage 
                   src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/Kit-Coelhinho-Bento.jpg" 
                   alt="Amostra do kit sala de aula do coelhinho bento"
@@ -232,73 +232,55 @@ const Contents = () => {
     { text: "🕒 vamos aprender as horas!!", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-12_12_06.png" },
     { text: "🧑‍🤝‍🧑 ajudantes do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-11_03_54.png" },
     { text: "🔺 formas geométricas espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_21.png" },
-    { text: "🔠 cards do alfabeto com letras bastão e cursiva para parede", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-15_05_34.png" },
+    { text: "🔠 cards do alfabeto", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-15_05_34.png" },
     { text: "🔺 formas geométricas planas", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_29.png" },
     { text: "🔢 painel número do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_30.png" },
-    { text: "📝 painel palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
+    { text: "📝 palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
     { text: "📅 calendário", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png" },
-    { text: "🎂 painel de aniversariantes", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_00_38.png" },
+    { text: "🎂 aniversariantes", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_00_38.png" },
     { text: "👥 quantos somos", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09.png" },
-    { text: "✖️ tabuada da multiplicação", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-16_52_49.png" },
-    { text: "🔢 painel de parede dos numeros", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-17_09_40.png" }
+    { text: "✖️ tabuada de multiplicação", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-16_52_49.png" },
+    { text: "🔢 painel dos números", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-17_09_40.png" }
   ];
 
   return (
     <section className="bg-[#f0f9f1] py-20 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-gray-800 flex items-center justify-center gap-3 lowercase">
-            <span className="text-3xl">📂</span> o kit contém:
-          </h2>
+          <SectionTitle><span className="lowercase">📂 visualização do kit</span></SectionTitle>
+          <p className="text-gray-500 -mt-4 lowercase italic font-medium">conheça cada detalhe dos arquivos que você vai receber</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-          {items.map((item, idx) => {
-            const isPdf = item.image?.toLowerCase().endsWith('.pdf');
-            return (
-              <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md group">
-                {item.image && (
-                  <div className="relative group/img flex-shrink-0 bg-gray-50 rounded">
-                    {isPdf ? (
-                      <div className="w-12 h-12 rounded bg-red-50 flex items-center justify-center text-red-500 border border-red-100 group-hover:bg-red-100 transition-colors">
-                        <FileText size={22} />
-                      </div>
-                    ) : (
-                      <ProtectedImage 
-                        src={item.image} 
-                        alt={item.text} 
-                        width="48"
-                        height="48"
-                        className="w-12 h-12 rounded shadow-sm" 
-                      />
-                    )}
-                    
-                    {/* Hover Zoom Preview (Apenas para imagens) */}
-                    {!isPdf && (
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
-                        <div className="bg-white p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-[450px] max-w-[90vw] overflow-hidden">
-                           <ProtectedImage 
-                            src={item.image} 
-                            alt="Visualização ampliada" 
-                            width="450"
-                            height="450"
-                            className="w-full h-auto rounded-xl" 
-                           />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-                <span className="text-gray-700 font-bold text-sm md:text-base lowercase">{item.text}</span>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mb-16">
+          {items.map((item, idx) => (
+            <div key={idx} className="group flex flex-col items-center">
+              {/* Thumbnail Container */}
+              <div className="relative aspect-[4/5] w-full bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 flex items-center justify-center p-2">
+                <ProtectedImage 
+                  src={item.image} 
+                  alt={item.text} 
+                  className="max-w-full max-h-full object-contain" 
+                />
+                {/* Visual Polish Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
-            );
-          })}
+              
+              {/* Item Name */}
+              <div className="mt-4 text-center">
+                <p className="text-gray-700 font-bold text-sm md:text-base lowercase leading-tight group-hover:text-[#2ecc71] transition-colors duration-300 px-2">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
         
-        <div className="bg-[#1a2e2a] text-white py-5 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg md:text-2xl font-black shadow-2xl border-b-4 border-black/20 lowercase">
-          <span className="text-yellow-400 text-2xl">⚡</span> 
-          <span className="text-2xl">📌</span> 
-          <span>total: 12 arquivos digitais (+ bônus)</span>
+        <div className="bg-[#1a2e2a] text-white py-6 px-10 rounded-3xl flex flex-col md:flex-row items-center justify-center gap-4 text-center shadow-2xl border-b-4 border-black/20 lowercase">
+          <div className="flex items-center gap-3">
+            <span className="text-yellow-400 text-3xl">⚡</span> 
+            <span className="text-2xl">📌</span> 
+          </div>
+          <span className="text-xl md:text-2xl font-black">total: 12 arquivos digitais premium (+ bônus exclusivos)</span>
         </div>
       </div>
     </section>
@@ -338,7 +320,7 @@ const Differential = () => (
               alt="Ilustração do diferencial coelho BENTO"
               width="600"
               height="338"
-              className="w-full"
+              className="w-full object-contain"
             />
         </div>
       </div>
