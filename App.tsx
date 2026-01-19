@@ -21,7 +21,7 @@ import {
 const Button: React.FC<{ children: React.ReactNode; className?: string; onClick?: () => void }> = ({ children, className = "", onClick }) => (
   <button 
     onClick={onClick}
-    className={`w-full md:w-auto px-10 py-5 bg-[#2ecc71] hover:bg-[#27ae60] text-white font-extrabold text-xl rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl uppercase tracking-wider ${className}`}
+    className={`w-full md:w-auto px-10 py-5 bg-[#2ecc71] hover:bg-[#27ae60] text-white font-extrabold text-xl rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl tracking-wider ${className}`}
   >
     {children}
   </button>
@@ -43,9 +43,14 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ chi
 
 const Hero = () => {
   const images = [
-    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/f5d3660c-9193-40ec-837b-1fc0049e7d5e.jpg",
-    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/ChatGPT-Image-23-de-dez.-de-2025-22_21_35.png",
-    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2025/12/23afe8b9879c6eab4efbba59f35d5226-1.jpg"
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-16-de-jan.-de-2026-12_09_28.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_39.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_55.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_46.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09-1.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_21.png",
+    "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -59,7 +64,7 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
+    const timer = setInterval(nextSlide, 3000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
@@ -72,32 +77,32 @@ const Hero = () => {
       
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
         <div className="inline-block bg-[#2ecc71] text-[#1a2e2a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          Lançamento
+          lançamento
         </div>
 
-        {/* Pré-título com Professora em destaque */}
         <p className="text-lg md:text-2xl text-gray-300 mb-2 lowercase tracking-tight">
-          <span className="font-bold uppercase mr-1">Professora,</span> 
+          <span className="font-bold mr-1">professora,</span> 
           <span className="font-medium">receba seus aluninhos este ano com o</span>
         </p>
         
-        <h1 className="text-4xl md:text-7xl leading-[1.1] mb-6 uppercase tracking-tighter">
-          <span className="font-black">Kit Sala de Aula</span>
+        <h1 className="text-4xl md:text-7xl leading-[1.1] mb-6 tracking-tighter">
+          <span className="font-black lowercase">kit sala de aula</span>
           <br />
           <span className="text-[#e67e22] flex flex-wrap items-baseline justify-center gap-x-2 md:gap-x-4">
-            <span className="font-medium text-2xl md:text-4xl">Tema</span> 
-            <span className="font-black">Coelho Bento</span>
+            <span className="font-medium text-2xl md:text-4xl lowercase">do</span> 
+            <span className="font-black flex gap-x-2">
+              <span className="lowercase">coelhinho</span>
+              <span className="uppercase">BENTO</span>
+            </span>
           </span>
         </h1>
         
-        <p className="text-lg md:text-2xl font-medium text-gray-300 max-w-3xl mb-10 leading-relaxed">
-          Materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na Educação Infantil.
+        <p className="text-lg md:text-2xl font-medium text-gray-300 max-w-3xl mb-10 leading-relaxed lowercase">
+          materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na educação infantil.
         </p>
 
-        {/* Carrossel - Quadro Removido */}
         <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group">
           <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-            {/* Imagens */}
             <div 
               className="flex w-full h-full transition-transform duration-700 ease-in-out" 
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -112,7 +117,6 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Setas de Navegação */}
             <button 
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
@@ -126,7 +130,6 @@ const Hero = () => {
               <ChevronRight size={24} />
             </button>
 
-            {/* Indicadores (Dots) */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
               {images.map((_, index) => (
                 <button 
@@ -140,14 +143,14 @@ const Hero = () => {
         </div>
 
         <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
-          Comprar agora
+          comprar agora
         </Button>
         
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-gray-400 font-semibold text-sm">
-          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> PDF de Alta Qualidade</div>
-          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Envio Imediato</div>
-          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 18 Arquivos Prontos</div>
-          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> Compra Segura</div>
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-gray-400 font-semibold text-sm lowercase">
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> pdf de alta qualidade</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> envio imediato</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> 18 arquivos prontos</div>
+          <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> compra segura</div>
         </div>
       </div>
     </section>
@@ -160,24 +163,24 @@ const Description = () => (
       <div className="flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1">
           <SectionTitle center={false}>
-            <span className="text-[#2ecc71]">📘</span> Descrição do Projeto
+            <span className="text-[#2ecc71]">📘</span> <span className="lowercase">descrição do projeto</span>
           </SectionTitle>
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed font-normal">
+          <div className="space-y-6 text-lg text-gray-700 leading-relaxed font-normal lowercase">
             <p>
-              O <strong>Kit Sala de Aula – Tema Coelho Bento</strong> foi desenvolvido para professores que buscam materiais pedagógicos prontos, com um tema lúdico e atrativo para as crianças.
+              o <strong>kit sala de aula do coelhinho bento</strong> foi desenvolvido para professores que buscam materiais pedagógicos prontos, com um tema lúdico e atrativo para as crianças.
             </p>
             <p>
-              Com atividades ilustradas e organizadas, o kit ajuda a tornar o dia a dia em sala de aula mais <strong>prático, visual e envolvente</strong>.
+              com atividades ilustradas e organizadas, o kit ajuda a tornar o dia a dia em sala de aula mais <strong>prático, visual e envolvente</strong>.
             </p>
           </div>
         </div>
         <div className="flex-1 w-full">
-            <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                <div className="w-full aspect-square bg-[#fdf8f1] border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8 text-center">
-                   <p className="text-xl md:text-2xl font-black text-[#2ecc71] uppercase tracking-tight">
-                     Atividades Organizadas e Lúdicas
-                   </p>
-                </div>
+            <div className="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500 bg-[#fdf8f1]">
+                <img 
+                  src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/Kit-Coelhinho-Bento.jpg" 
+                  alt="kit sala de aula do coelhinho bento"
+                  className="w-full h-auto block"
+                />
             </div>
         </div>
       </div>
@@ -187,50 +190,62 @@ const Description = () => (
 
 const Contents = () => {
   const items = [
-    "🕒 Painel “Que horas são?”",
-    "🧑‍🤝‍🧑 Ajudantes do dia",
-    "📜 Combinados da turma",
-    "🔺 Formas geométricas planas e espaciais",
-    "🅰️ Silabário simples (cursivo e bastão)",
-    "🆎 Silabário complexo (cursivo e bastão)",
-    "🔢 Painel Número do dia",
-    "📝 Painel Palavrinha do dia",
-    "📚 Leiturômetro",
-    "👧👦 Quantos somos",
-    "🪪 Crachá de mesa (3 opções completas)",
-    "✖️ Tabuada da multiplicação",
-    "🙌 Painel “Bem-vindos” interativo",
-    "🔠 Alfabeto de parede",
-    "📋 Chamadinha (Editável no Canva Pro)",
-    "👋 Cumprimentos divertidos",
-    "🚪 Placa de porta para sala",
-    "🎨 Opções de decoração de porta"
+    { text: "🕒 painel “que horas são?”", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-16-de-jan.-de-2026-12_09_28.png" },
+    { text: "🧑‍🤝‍🧑 ajudantes do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_39.png" },
+    { text: "🔺 formas geométricas planas e espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_55.png" },
+    { text: "🔺 formas geométricas espaciais", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-17-de-jan.-de-2026-10_24_46.png" },
+    { text: "🅰️ silabário simples (cursivo e bastão)", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_53.png" },
+    { text: "🆎 silabário complexo (cursivo e bastão)", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_03_09-1.png" },
+    { text: "🔢 painel número do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-21_02_21.png" },
+    { text: "📝 painel palavrinha do dia", image: "https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-18-de-jan.-de-2026-22_03_39.png" },
+    { text: "📚 leiturômetro" },
+    { text: "👧👦 quantos somos" },
+    { text: "🪪 crachá de mesa (3 opções completas)" },
+    { text: "✖️ tabuada da multiplicação" },
+    { text: "🙌 painel “bem-vindos” interativo" },
+    { text: "🔠 alfabeto de parede" },
+    { text: "📋 chamadinha (editável no canva pro)" },
+    { text: "👋 cumprimentos divertidos" },
+    { text: "🚪 placa de porta para sala" },
+    { text: "🎨 opções de decoração de porta" }
   ];
 
   return (
     <section className="bg-[#f0f9f1] py-20 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-gray-800 flex items-center justify-center gap-3">
-            <span className="text-3xl">📂</span> O kit contém:
+          <h2 className="text-3xl md:text-4xl font-black text-gray-800 flex items-center justify-center gap-3 lowercase">
+            <span className="text-3xl">📂</span> o kit contém:
           </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
           {items.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-[#2ecc71] flex items-center justify-center">
-                <Check className="text-[#2ecc71]" size={14} strokeWidth={4} />
-              </div>
-              <span className="text-gray-700 font-bold text-sm md:text-base">{item}</span>
+            <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border-l-[6px] border-[#2ecc71] transition-all hover:shadow-md group">
+              {item.image && (
+                <div className="relative group/img flex-shrink-0">
+                  <img 
+                    src={item.image} 
+                    alt="" 
+                    className="w-12 h-12 rounded shadow-sm object-cover border border-gray-100 cursor-zoom-in transition-transform duration-300" 
+                  />
+                  {/* Hover Zoom Preview */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 z-[60] opacity-0 group-hover/img:opacity-100 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover/img:translate-y-0 hidden md:block">
+                    <div className="bg-white p-1 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-80 overflow-hidden">
+                       <img src={item.image} alt="ampliado" className="w-full h-auto rounded-xl" />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <span className="text-gray-700 font-bold text-sm md:text-base lowercase">{item.text}</span>
             </div>
           ))}
         </div>
         
-        <div className="bg-[#1a2e2a] text-white py-5 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg md:text-2xl font-black shadow-2xl border-b-4 border-black/20">
+        <div className="bg-[#1a2e2a] text-white py-5 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg md:text-2xl font-black shadow-2xl border-b-4 border-black/20 lowercase">
           <span className="text-yellow-400 text-2xl">⚡</span> 
           <span className="text-2xl">📌</span> 
-          <span>Total: 18 arquivos digitais</span>
+          <span>total: 18 arquivos digitais</span>
         </div>
       </div>
     </section>
@@ -240,19 +255,19 @@ const Contents = () => {
 const TargetAudience = () => (
   <section className="bg-[#fdf8f1] py-20 px-6">
     <div className="max-w-5xl mx-auto text-center">
-      <SectionTitle>🎯 Indicado para:</SectionTitle>
+      <SectionTitle><span className="lowercase">🎯 indicado para:</span></SectionTitle>
       
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {[
-          { icon: <BookOpen />, label: "Educação Infantil" },
-          { icon: <Users />, label: "Professores" },
-          { icon: <CheckCircle />, label: "Auxiliares" },
-          { icon: <Printer />, label: "Escolas" },
-          { icon: <FileText />, label: "Uso em sala ou reforço" }
+          { icon: <BookOpen />, label: "educação infantil" },
+          { icon: <Users />, label: "professores" },
+          { icon: <CheckCircle />, label: "auxiliares" },
+          { icon: <Printer />, label: "escolas" },
+          { icon: <FileText />, label: "uso em sala" }
         ].map((item, idx) => (
           <Card key={idx} className="flex flex-col items-center justify-center gap-4 hover:-translate-y-2 transition-transform cursor-default">
             <div className="text-[#2ecc71] p-3 bg-[#f0f9f1] rounded-full">{item.icon}</div>
-            <span className="font-bold text-gray-700 text-sm leading-tight">{item.label}</span>
+            <span className="font-bold text-gray-700 text-sm leading-tight lowercase">{item.label}</span>
           </Card>
         ))}
       </div>
@@ -264,22 +279,33 @@ const Differential = () => (
   <section className="bg-white py-20 px-6">
     <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <div className="flex-1 order-2 md:order-1">
-        <div className="bg-blue-50 p-4 rounded-3xl">
-            <div className="rounded-2xl shadow-lg w-full aspect-square bg-white border-2 border-dashed border-[#2ecc71] flex items-center justify-center p-8 text-center">
-               <p className="text-xl md:text-2xl font-black text-[#2ecc71] uppercase tracking-tight">
-                 Conheça o Coelho Bento
-               </p>
-            </div>
+        <div className="bg-blue-50 p-4 rounded-3xl overflow-hidden shadow-2xl">
+            <img 
+              src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-09_26_03.png" 
+              alt="diferencial coelho BENTO"
+              className="w-full h-auto block"
+            />
         </div>
       </div>
       <div className="flex-1 order-1 md:order-2">
-        <SectionTitle center={false}>🐰 Tema Coelho Bento</SectionTitle>
-        <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+        <SectionTitle center={false}>
+          <span className="flex flex-col items-start gap-1">
+            <span className="flex items-center gap-2">
+               <span className="text-3xl">🐰</span>
+               <span className="lowercase">kit sala de aula</span>
+            </span>
+            <span className="flex items-baseline gap-2 flex-wrap">
+              <span className="lowercase">do coelhinho</span>
+              <span className="uppercase text-[#e67e22] font-black tracking-tight">BENTO</span>
+            </span>
+          </span>
+        </SectionTitle>
+        <div className="space-y-6 text-lg text-gray-700 leading-relaxed lowercase">
           <p>
-            O <strong>Coelho Bento</strong> é um personagem carismático e familiar para as crianças, ajudando a tornar as atividades mais atrativas e envolventes.
+            o <strong>coelhinho bento</strong> é um personagem carismático e familiar para as crianças, ajudando a tornar as atividades mais atrativas e envolventes.
           </p>
           <p>
-            O uso de um personagem fixo facilita a identificação das crianças com o material, tornando o momento das atividades mais <strong>leve e organizado</strong>.
+            o uso de um personagem fixo facilita a identificação das crianças com o material, tornando o momento das atividades mais <strong>leve e organizado</strong>.
           </p>
         </div>
       </div>
@@ -292,38 +318,38 @@ const FormatInfo = () => (
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card className="flex flex-col gap-6 border-none">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
-            <Download className="text-[#3498db]" /> 💾 Formato:
+          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
+            <Download className="text-[#3498db]" /> formato:
           </h3>
           <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-[#3498db]" /> Arquivos digitais (PDF)
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> arquivos digitais (pdf)
             </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-[#3498db]" /> Envio imediato após a compra
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> envio imediato após a compra
             </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-[#3498db]" /> Pode ser impresso quantas vezes desejar
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-[#3498db]" /> pode ser impresso quantas vezes desejar
             </li>
           </ul>
         </Card>
 
         <Card className="flex flex-col gap-6 border-none bg-white">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
-            <AlertCircle className="text-orange-500" /> Informações Importantes
+          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
+            <AlertCircle className="text-orange-500" /> informações importantes:
           </h3>
           <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-orange-500" /> Produto digital
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> produto digital
             </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-orange-500" /> Não acompanha material físico
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> não acompanha material físico
             </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600">
-              <CheckCircle size={18} className="text-orange-500" /> Uso pedagógico
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
+              <CheckCircle size={18} className="text-orange-500" /> uso pedagógico
             </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 italic">
-              <CheckCircle size={18} className="text-red-500" /> Proibida a revenda ou compartilhamento
+            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 italic lowercase">
+              <CheckCircle size={18} className="text-red-500" /> proibida a revenda ou compartilhamento
             </li>
           </ul>
         </Card>
@@ -336,37 +362,37 @@ const Pricing = () => (
   <section id="oferta" className="bg-[#1a2e2a] py-24 px-6 relative overflow-hidden">
     <div className="absolute top-0 right-0 w-64 h-64 bg-green-400/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
     <div className="max-w-4xl mx-auto text-center relative z-10">
-      <h2 className="text-white text-2xl md:text-3xl font-bold mb-4 uppercase tracking-wider">
-        Acesso Imediato ao Kit Completo
+      <h2 className="text-white text-2xl md:text-3xl font-bold mb-4 tracking-wider lowercase">
+        acesso imediato ao kit completo
       </h2>
-      <p className="text-gray-400 text-lg mb-8 font-medium">
-        Garanta seu material hoje com valor promocional por tempo limitado.
+      <p className="text-gray-400 text-lg mb-8 font-medium lowercase">
+        garanta seu material hoje com valor promocional por tempo limitado.
       </p>
       
       <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 backdrop-blur-md inline-block w-full max-w-2xl shadow-2xl">
         <div className="mb-2">
-          <span className="text-red-400 line-through text-xl mr-3 font-semibold">De R$ 49,90</span>
+          <span className="text-red-400 line-through text-xl mr-3 font-semibold lowercase">de r$ 49,90</span>
         </div>
         <div className="flex flex-col items-center justify-center mb-10">
-          <span className="text-gray-300 text-lg font-bold uppercase mb-1">Por apenas</span>
+          <span className="text-gray-300 text-lg font-bold lowercase mb-1">por apenas</span>
           <div className="flex items-baseline gap-2">
-            <span className="text-white text-3xl md:text-5xl font-extrabold uppercase tracking-tighter">R$</span>
+            <span className="text-white text-3xl md:text-5xl font-extrabold lowercase tracking-tighter">r$</span>
             <span className="text-[#2ecc71] text-7xl md:text-9xl font-black tracking-tighter">10,00</span>
           </div>
-          <span className="text-gray-400 text-sm mt-4 flex items-center gap-2">
-            <CreditCard size={16} /> Pagamento Único • Sem Mensalidades
+          <span className="text-gray-400 text-sm mt-4 flex items-center gap-2 lowercase">
+            <CreditCard size={16} /> pagamento único • sem mensalidades
           </span>
         </div>
         
-        <Button className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)]">
-          QUERO MEU KIT AGORA
+        <Button className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)] lowercase">
+          quero meu kit agora
         </Button>
       </div>
       
-      <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/40 text-xs font-bold uppercase tracking-widest">
-        <span className="flex items-center gap-2"><ShieldCheck size={16} className="text-[#2ecc71]" /> Site 100% Seguro</span>
-        <span className="flex items-center gap-2"><Zap size={16} className="text-[#2ecc71]" /> Liberação Imediata</span>
-        <span className="flex items-center gap-2"><Star size={16} className="text-[#2ecc71]" /> Satisfação Garantida</span>
+      <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/40 text-xs font-bold uppercase tracking-widest lowercase">
+        <span className="flex items-center gap-2"><ShieldCheck size={16} className="text-[#2ecc71]" /> site 100% seguro</span>
+        <span className="flex items-center gap-2"><Zap size={16} className="text-[#2ecc71]" /> liberação imediata</span>
+        <span className="flex items-center gap-2"><Star size={16} className="text-[#2ecc71]" /> satisfação garantida</span>
       </div>
     </div>
   </section>
@@ -378,14 +404,14 @@ const Guarantee = () => (
       <div className="inline-block p-4 bg-green-50 rounded-full mb-6">
         <ShieldCheck size={64} className="text-[#2ecc71]" />
       </div>
-      <SectionTitle>✅ Garantia de 7 dias</SectionTitle>
-      <p className="text-xl text-gray-600 leading-relaxed mb-10">
-        Você pode solicitar reembolso dentro do prazo caso o material não atenda às suas expectativas. Sua satisfação é nossa prioridade.
+      <SectionTitle><span className="lowercase">✅ garantia de 7 dias</span></SectionTitle>
+      <p className="text-xl text-gray-600 leading-relaxed mb-10 lowercase">
+        você pode solicitar reembolso dentro do prazo caso o material não atenda às suas expectativas. sua satisfação é nossa prioridade.
       </p>
       
       <div className="flex flex-col items-center gap-8">
         <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
-          Comprar agora
+          <span className="lowercase">comprar agora</span>
         </Button>
       </div>
     </div>
@@ -393,11 +419,11 @@ const Guarantee = () => (
 );
 
 const Footer = () => (
-  <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 border-t border-white/5 text-center text-sm font-medium">
+  <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 border-t border-white/5 text-center text-sm font-medium lowercase">
     <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
-      <p>&copy; Kit Sala de Aula - Tema Coelho Bento. Todos os direitos reservados.</p>
+      <p>&copy; kit sala de aula do coelhinho BENTO. todos os direitos reservados.</p>
       <p className="max-w-2xl">
-        Este produto é exclusivamente digital. O acesso será enviado ao e-mail cadastrado no momento da compra imediatamente após a confirmação do pagamento.
+        este produto é exclusivamente digital. o acesso será enviado ao e-mail cadastrado no momento da compra imediatamente após a confirmação do pagamento.
       </p>
     </div>
   </footer>
@@ -412,9 +438,9 @@ const App: React.FC = () => {
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
         <button 
           onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}
-          className="w-full py-4 bg-[#2ecc71] text-white font-black rounded-xl text-lg shadow-lg"
+          className="w-full py-4 bg-[#2ecc71] text-white font-black rounded-xl text-lg shadow-lg lowercase"
         >
-          COMPRAR AGORA
+          comprar agora
         </button>
       </div>
 
