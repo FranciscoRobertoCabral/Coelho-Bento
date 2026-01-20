@@ -16,6 +16,9 @@ import {
   Gift
 } from 'lucide-react';
 
+// URL de Checkout Oficial configurada para os botões
+const CHECKOUT_URL = "https://pay.celetus.com/7BNS82J0";
+
 // --- Helper Components ---
 
 const Button: React.FC<{ children: React.ReactNode; className?: string; onClick?: () => void }> = ({ children, className = "", onClick }) => (
@@ -179,10 +182,6 @@ const Hero = () => {
           </div>
         </div>
 
-        <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
-          comprar agora
-        </Button>
-        
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-blue-100 font-semibold text-sm lowercase">
           <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> pdf de alta qualidade</div>
           <div className="flex items-center justify-center gap-2"><CheckCircle size={18} className="text-[#2ecc71]" /> envio imediato</div>
@@ -430,7 +429,10 @@ const Pricing = () => (
           </span>
         </div>
         
-        <Button className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)] lowercase">
+        <Button 
+          onClick={() => window.location.href = CHECKOUT_URL}
+          className="w-full !py-6 !text-2xl shadow-[0_0_30px_rgba(46,204,113,0.3)] lowercase"
+        >
           quero meu kit agora
         </Button>
       </div>
@@ -456,7 +458,7 @@ const Guarantee = () => (
       </p>
       
       <div className="flex flex-col items-center gap-8">
-        <Button onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}>
+        <Button onClick={() => window.location.href = CHECKOUT_URL}>
           <span className="lowercase">comprar agora</span>
         </Button>
       </div>
@@ -546,7 +548,7 @@ const App: React.FC = () => {
       {/* Navigation - Minimal fixed CTA for mobile */}
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
         <button 
-          onClick={() => window.scrollTo({ top: document.getElementById('oferta')?.offsetTop || 0, behavior: 'smooth' })}
+          onClick={() => window.location.href = CHECKOUT_URL}
           className="w-full py-4 bg-[#2ecc71] text-white font-black rounded-xl text-lg shadow-lg lowercase"
         >
           comprar agora
