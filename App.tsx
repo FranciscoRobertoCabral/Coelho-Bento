@@ -42,10 +42,6 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ chi
   </div>
 );
 
-/**
- * Image Wrapper component that puts an invisible div on top of images
- * to prevent right-clicks, long presses on mobile, and dragging.
- */
 const ProtectedImage: React.FC<{ 
   src: string; 
   alt: string; 
@@ -68,7 +64,6 @@ const ProtectedImage: React.FC<{
       className="block w-full h-auto pointer-events-none select-none bg-gray-100"
       onContextMenu={(e) => e.preventDefault()}
     />
-    {/* Invisible protection layer */}
     <div className="absolute inset-0 z-10 bg-transparent cursor-default" onContextMenu={(e) => e.preventDefault()}></div>
   </div>
 );
@@ -253,18 +248,14 @@ const Contents = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mb-16">
           {items.map((item, idx) => (
             <div key={idx} className="group flex flex-col items-center">
-              {/* Thumbnail Container */}
               <div className="relative aspect-[4/5] w-full bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 flex items-center justify-center p-2">
                 <ProtectedImage 
                   src={item.image} 
                   alt={item.text} 
                   className="max-w-full max-h-full object-contain" 
                 />
-                {/* Visual Polish Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
-              
-              {/* Item Name */}
               <div className="mt-4 text-center">
                 <p className="text-gray-700 font-bold text-sm md:text-base lowercase leading-tight group-hover:text-[#2ecc71] transition-colors duration-300 px-2">
                   {item.text}
@@ -285,114 +276,6 @@ const Contents = () => {
     </section>
   );
 };
-
-const TargetAudience = () => (
-  <section className="bg-[#fdf8f1] py-20 px-6">
-    <div className="max-w-5xl mx-auto text-center">
-      <SectionTitle><span className="lowercase">🎯 indicado para:</span></SectionTitle>
-      
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {[
-          { icon: <BookOpen />, label: "educação infantil" },
-          { icon: <Users />, label: "professores" },
-          { icon: <CheckCircle />, label: "auxiliares" },
-          { icon: <Printer />, label: "escolas" },
-          { icon: <FileText />, label: "uso em sala" }
-        ].map((item, idx) => (
-          <Card key={idx} className="flex flex-col items-center justify-center gap-4 hover:-translate-y-2 transition-transform cursor-default">
-            <div className="text-[#2ecc71] p-3 bg-[#f0f9f1] rounded-full">{item.icon}</div>
-            <span className="font-bold text-gray-700 text-sm leading-tight lowercase">{item.label}</span>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const Differential = () => (
-  <section className="bg-white py-20 px-6">
-    <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
-      <div className="flex-1 order-2 md:order-1">
-        <div className="bg-blue-50 p-4 rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gray-100 flex items-center justify-center">
-            <ProtectedImage 
-              src="https://xn--ateliedainspirao-snb5e.com.br/wp-content/uploads/2026/01/ChatGPT-Image-19-de-jan.-de-2026-09_26_03.png" 
-              alt="Ilustração do diferencial coelho BENTO"
-              width="600"
-              height="338"
-              className="w-full object-contain"
-            />
-        </div>
-      </div>
-      <div className="flex-1 order-1 md:order-2">
-        <SectionTitle center={false}>
-          <span className="flex flex-col items-start gap-1">
-            <span className="flex items-center gap-2">
-               <span className="text-3xl">🐰</span>
-               <span className="lowercase">kit sala de aula</span>
-            </span>
-            <span className="flex items-baseline gap-2 flex-wrap">
-              <span className="lowercase">do coelhinho</span>
-              <span className="uppercase text-[#e67e22] font-black tracking-tight">BENTO</span>
-            </span>
-          </span>
-        </SectionTitle>
-        <div className="space-y-6 text-lg text-gray-700 leading-relaxed lowercase">
-          <p>
-            o <strong>coelhinho <span className="uppercase text-[#e67e22]">BENTO</span></strong> é um personagem carismático e familiar para as crianças, ajudando a tornar as atividades mais atrativas e envolventes.
-          </p>
-          <p>
-            o uso de um personagem fixo facilita a identificação das crianças com o material, tornando o momento das atividades mais <strong>leve e organizado</strong>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const FormatInfo = () => (
-  <section className="bg-[#f0f4f9] py-20 px-6">
-    <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="flex flex-col gap-6 border-none">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
-            <Download className="text-[#3498db]" /> formato:
-          </h3>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> arquivos digitais (pdf)
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> envio imediato após a compra
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-[#3498db]" /> pode ser impresso quantas vezes desejar
-            </li>
-          </ul>
-        </Card>
-
-        <Card className="flex flex-col gap-6 border-none bg-white">
-          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-3 lowercase">
-            <AlertCircle className="text-orange-500" /> informações importantes:
-          </h3>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> produto digital
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> não acompanha material físico
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 lowercase">
-              <CheckCircle size={18} className="text-orange-500" /> uso pedagógico
-            </li>
-            <li className="flex items-center gap-3 text-lg font-medium text-gray-600 italic lowercase">
-              <CheckCircle size={18} className="text-red-500" /> proibida a revenda ou compartilhamento
-            </li>
-          </ul>
-        </Card>
-      </div>
-    </div>
-  </section>
-);
 
 const Pricing = () => (
   <section id="oferta" className="bg-[#1a2e2a] py-24 px-6 relative overflow-hidden">
@@ -421,7 +304,6 @@ const Pricing = () => (
           </span>
         </div>
 
-        {/* Bonus Highlight repositioned above the button */}
         <div className="mb-8 bg-yellow-400/10 border border-yellow-400/20 rounded-2xl p-4 inline-flex items-center gap-3">
           <Gift className="text-yellow-400" size={24} />
           <span className="text-yellow-100 font-bold text-base md:text-lg lowercase">
@@ -446,106 +328,25 @@ const Pricing = () => (
   </section>
 );
 
-const Guarantee = () => (
-  <section id="garantia" className="bg-white py-20 px-6">
-    <div className="max-w-3xl mx-auto text-center">
-      <div className="inline-block p-4 bg-green-50 rounded-full mb-6">
-        <ShieldCheck size={64} className="text-[#2ecc71]" />
-      </div>
-      <SectionTitle><span className="lowercase">✅ garantia de 7 dias</span></SectionTitle>
-      <p className="text-xl text-gray-600 leading-relaxed mb-10 lowercase">
-        você pode solicitar reembolso dentro do prazo caso o material não atenda às suas expectativas. sua satisfação é nossa prioridade.
-      </p>
-      
-      <div className="flex flex-col items-center gap-8">
-        <Button onClick={() => window.location.href = CHECKOUT_URL}>
-          <span className="lowercase">comprar agora</span>
-        </Button>
-      </div>
-    </div>
-  </section>
-);
-
-const Footer = () => (
-  <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 border-t border-white/5 text-center text-sm font-medium lowercase">
-    <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
-      <p>&copy; kit sala de aula do coelhinho BENTO. todos os direitos reservados.</p>
-      <p className="max-w-2xl">
-        este produto é exclusivamente digital. o acesso será enviado ao e-mail cadastrado no momento da compra imediatamente após a confirmação do pagamento.
-      </p>
-    </div>
-  </footer>
-);
-
-// --- Main App Component ---
-
 const App: React.FC = () => {
   useEffect(() => {
-    // Disable right click globally
     const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();
       return false;
     };
-
-    // Disable common copy/inspect shortcuts
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'j' || e.key === 'p')) ||
-        (e.metaKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'j' || e.key === 'p')) ||
-        e.key === 'F12'
-      ) {
-        e.preventDefault();
-        return false;
-      }
-    };
-
-    // Disable image dragging globally
-    const handleDragStart = (e: DragEvent) => {
-      if ((e.target as HTMLElement).tagName === 'IMG') {
-        e.preventDefault();
-        return false;
-      }
-    };
-
     window.addEventListener('contextmenu', handleContextMenu);
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('dragstart', handleDragStart);
-
     return () => {
       window.removeEventListener('contextmenu', handleContextMenu);
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('dragstart', handleDragStart);
     };
   }, []);
 
   return (
-    <div className="min-h-screen font-['Montserrat'] bg-gray-50 select-none">
-      {/* Global Style for protection and performance placeholders */}
-      <style>{`
-        body {
-          -webkit-touch-callout: none; /* Disable long press context menu on iOS */
-          -webkit-user-select: none;
-          -khtml-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-        img {
-          -webkit-user-drag: none;
-          -khtml-user-drag: none;
-          -moz-user-drag: none;
-          -o-user-drag: none;
-          user-drag: none;
-          pointer-events: none; /* Important: makes the image non-interactable */
-          background-color: #f3f4f6; /* Placeholder color */
-        }
-        /* Prevents layout shift for images in hero slider */
-        .hero-img-container {
-          aspect-ratio: 16/9;
-        }
-      `}</style>
-
-      {/* Navigation - Minimal fixed CTA for mobile */}
+    <div className="min-h-screen font-['Montserrat'] bg-gray-50 select-none pb-20 md:pb-0">
+      <Hero />
+      <Description />
+      <Contents />
+      <Pricing />
+      
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-50 md:hidden flex justify-center">
         <button 
           onClick={() => window.location.href = CHECKOUT_URL}
@@ -555,18 +356,11 @@ const App: React.FC = () => {
         </button>
       </div>
 
-      <main>
-        <Hero />
-        <Description />
-        <Contents />
-        <TargetAudience />
-        <Differential />
-        <FormatInfo />
-        <Pricing />
-        <Guarantee />
-      </main>
-      
-      <Footer />
+      <footer className="bg-[#1a2e2a] text-gray-500 py-10 px-6 text-center text-sm font-medium lowercase">
+        <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
+          <p>&copy; kit sala de aula do coelhinho BENTO. todos os direitos reservados.</p>
+        </div>
+      </footer>
     </div>
   );
 };
