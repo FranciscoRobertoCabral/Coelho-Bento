@@ -93,7 +93,7 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 3000);
+    const timer = setInterval(nextSlide, 5000); // Aumentado para 5s para melhor leitura
     return () => clearInterval(timer);
   }, [nextSlide]);
 
@@ -130,21 +130,26 @@ const Hero = () => {
           materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na educação infantil.
         </p>
 
-        <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group bg-white/5 rounded-2xl">
+        <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group bg-white/5 rounded-3xl shadow-2xl border border-white/10">
           <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
             <div 
-              className="flex w-full h-full transition-transform duration-700 ease-in-out" 
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              className="flex w-full h-full transition-transform duration-1000" 
+              style={{ 
+                transform: `translateX(-${currentIndex * 100}%)`,
+                transitionTimingFunction: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
+              }}
             >
               {images.map((img, index) => (
-                <div key={index} className="w-full h-full flex-shrink-0 relative">
-                  <ProtectedImage 
-                    src={img} 
-                    alt={`Material do Kit ${index + 1}`} 
-                    className="w-full h-full object-contain"
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
+                <div key={index} className="w-full h-full flex-shrink-0 relative overflow-hidden flex items-center justify-center">
+                  <div className={`w-full h-full p-4 transition-all duration-1000 ${currentIndex === index ? 'scale-100 opacity-100 rotate-0' : 'scale-90 opacity-40 rotate-1'}`}>
+                    <ProtectedImage 
+                      src={img} 
+                      alt={`Material do Kit ${index + 1}`} 
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -152,25 +157,25 @@ const Hero = () => {
             <button 
               onClick={prevSlide}
               aria-label="Slide anterior"
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+              className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-xl border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 hover:scale-110 active:scale-95"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={28} />
             </button>
             <button 
               onClick={nextSlide}
               aria-label="Próximo slide"
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+              className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-xl border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 hover:scale-110 active:scale-95"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={28} />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
               {images.map((_, index) => (
                 <button 
                   key={index}
                   aria-label={`Ir para slide ${index + 1}`}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-white w-6' : 'bg-white/40'}`}
+                  className={`h-1.5 rounded-full transition-all duration-700 ${currentIndex === index ? 'bg-white w-10 shadow-[0_0_10px_rgba(255,255,255,0.8)]' : 'bg-white/30 w-4'}`}
                 />
               ))}
             </div>
