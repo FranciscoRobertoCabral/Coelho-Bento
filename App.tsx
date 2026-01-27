@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   CheckCircle, 
@@ -127,7 +128,7 @@ const Hero = () => {
         </h1>
         
         <p className="text-lg md:text-2xl font-medium text-blue-100 max-w-3xl mb-10 leading-relaxed lowercase">
-          materiais pedagógicos prontos, lúdicos e organizados para facilitar a rotina do professor em sala na educação infantil.
+          painéis pedagógicos prontos e organizados para facilitar a rotina do professor em sala na educação infantil.
         </p>
 
         <div className="relative w-full max-w-4xl aspect-[16/9] mb-12 overflow-hidden group bg-white/5 rounded-3xl shadow-2xl border border-white/10">
@@ -203,10 +204,10 @@ const Description = () => (
           </SectionTitle>
           <div className="space-y-6 text-lg text-gray-700 leading-relaxed font-normal lowercase">
             <p>
-              o <strong>kit sala de aula do coelhinho <span className="uppercase text-[#e67e22]">BENTO</span></strong> foi desenvolvido para professores que buscam materiais pedagógicos prontos, com um tema lúdico e atrativo para as crianças.
+              o <strong>kit sala de aula do coelhinho <span className="uppercase text-[#e67e22]">BENTO</span></strong> foi desenvolvido para professores que buscam painéis pedagógicos prontos, com um tema atrativo para as crianças.
             </p>
             <p>
-              com atividades ilustradas e organizadas, o kit ajuda a tornar o dia a dia em sala de aula mais <strong>prático, visual e envolvente</strong>.
+              o kit ajuda a tornar o dia a dia em sala de aula mais <strong>prático, visual e envolvente</strong>.
             </p>
           </div>
         </div>
